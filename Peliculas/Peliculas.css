@@ -1,0 +1,246 @@
+       /* Reset básico para eliminar márgenes, padding y ajustar el box-sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos generales del cuerpo del documento */
+body {
+    font-family: Orbitron, sans-serif; /* Fuente principal */
+    background-color: #21233D; /* Color de fondo */
+    display: flex; /* Disposición en flexbox */
+    flex-direction: column; /* Orientación en columna */
+    align-items: center; /* Centramos elementos horizontalmente */
+    min-height: 100vh; /* Altura mínima para cubrir toda la ventana */
+}
+
+/* Contenedor del carrusel */
+.slider-container {
+    width: 97%; /* Ancho casi completo */
+    height: 30vh; /* Altura proporcional a la ventana */
+    overflow: hidden; /* Oculta contenido que se salga del área visible */
+    position: relative; /* Necesario para posicionamiento interno */
+}
+
+/* Elemento deslizante que contiene todas las diapositivas */
+.slider {
+    display: flex; /* Los hijos se distribuyen en línea */
+    width: 1000%; /* Ancho total para permitir múltiples diapositivas */
+    height: 100%; /* Altura completa del contenedor */
+    animation: slide 40s infinite; /* Animación infinita de deslizamiento */
+}
+
+/* Estilos individuales para cada diapositiva */
+.slide {
+    width: 10%; /* Cada diapositiva ocupa un 10% del slider */
+    height: 100%; /* Altura completa del slider */
+    display: flex; /* Contenido centrado dentro de la diapositiva */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilización de las imágenes dentro de las diapositivas */
+.slide img {
+    width: 100%; /* La imagen ocupa todo el ancho */
+    height: 100%; /* Ajusta la altura de la imagen */
+    object-fit: contain; /* Evita recortes indeseados */
+    border-radius: 7px; /* Bordes redondeados */
+}
+
+/* Animación de deslizamiento de las diapositivas */
+@keyframes slide {
+    0% { transform: translateX(0); }
+    10% { transform: translateX(0); }
+    20% { transform: translateX(-10%); }
+    30% { transform: translateX(-20%); }
+    40% { transform: translateX(-30%); }
+    50% { transform: translateX(-40%); }
+    60% { transform: translateX(-50%); }
+    70% { transform: translateX(-60%); }
+    80% { transform: translateX(-70%); }
+    90% { transform: translateX(-80%); }
+    100% { transform: translateX(-90%); }
+}
+
+/* Ajustes para orientación horizontal en dispositivos */
+@media (orientation: landscape) {
+    .slider-container {
+        height: 100vh; /* Altura completa del viewport en modo horizontal */
+    }
+    .slide img {
+        object-fit: contain; /* Asegura que las imágenes se vean completas */
+    }
+}
+
+/* Contenedor de la navegación manual (botones) */
+.navigation-manual {
+    position: absolute; /* Posicionamiento relativo al slider */
+    bottom: 15px; /* Separación desde la parte inferior */
+    width: 100%; /* Ancho completo del contenedor */
+    display: flex; /* Botones alineados horizontalmente */
+    justify-content: center;
+    gap: 10px; /* Espaciado entre los botones */
+}
+
+/* Estilo general para los botones de navegación manual */
+.manual-btn {
+    width: 12px; /* Tamaño del botón */
+    height: 12px;
+    border-radius: 50%; /* Forma circular */
+    border: 2px solid #fff; /* Borde blanco */
+    background-color: transparent; /* Fondo transparente */
+    cursor: pointer; /* Indica que es interactivo */
+    transition: box-shadow 0.3s ease, border-color 0.3s ease; /* Animación de hover */
+    box-shadow: 0 0 8px #005EFF; /* Sombra visual */
+}
+
+/* Estilo del botón activo */
+.manual-btn.active {
+    border-color: #005EFF; /* Resaltado del botón activo */
+    background-color: #21233D; /* Fondo del botón activo */
+    box-shadow: 0 0 10px 2px #005EFF; /* Sombra más intensa */
+}
+
+/* Contenedor del encabezado */
+.header-container {
+    display: flex; /* Alineación horizontal */
+    justify-content: space-between; /* Título e imagen separados */
+    align-items: center;
+    width: 95%; /* Ancho ajustado */
+    background-color: white; /* Fondo blanco */
+    padding: 10px; /* Espaciado interno */
+    margin-top: 20px; /* Separación del carrusel */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra para profundidad */
+}
+
+/* Título dentro del encabezado */
+.header-title {
+    font-size: 1.1em; /* Tamaño de fuente del título */
+    font-weight: 700; /* Negrita */
+    color: Black; /* Color negro del texto */
+}
+
+/* Imagen dentro del encabezado */
+.header-image {
+    height: 20px; /* Altura de la imagen */
+}
+
+/* Contenedor del slider horizontal */
+.horizontal-slider-container {
+    width: 90%; /* Ancho ajustado del contenedor */
+    overflow-x: auto; /* Desplazamiento horizontal activado */
+    display: flex; /* Imágenes alineadas horizontalmente */
+    gap: 10px; /* Espaciado entre imágenes */
+    margin-top: 20px; /* Separación del encabezado */
+    padding: 10px 0; /* Espaciado interno vertical */
+}
+
+/* Imágenes en el slider horizontal */
+.horizontal-slider-container img {
+    height: 150px; /* Altura fija */
+    border-radius: 10px; /* Bordes redondeados */
+    object-fit: cover; /* Escala la imagen para cubrir el área */
+    cursor: pointer; /* Manito para indicar que son interactivas */
+}
+
+/* Personalización de la barra de scroll */
+.horizontal-slider-container::-webkit-scrollbar {
+    height: 8px; /* Altura de la barra de scroll */
+}
+
+.horizontal-slider-container::-webkit-scrollbar-thumb {
+    background-color: #21233D; /* Color del "pulgar" */
+    border-radius: 4px; /* Bordes redondeados */
+}
+
+/* Contenedor de imagen con posición relativa */
+.image-wrapper {
+    position: relative; /* Necesario para posicionamiento de etiquetas */
+    display: inline-block; /* Alinea las imágenes en fila */
+}
+
+/* Etiquetas sobre las imágenes */
+.etiqueta {
+    position: absolute; /* Posición fija dentro del contenedor */
+    top: 5px; /* Separación superior */
+    right: 5px; /* Separación derecha */
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
+    color: white; /* Texto blanco */
+    padding: 5px 10px; /* Espaciado interno */
+    font-size: 12px; /* Tamaño de letra reducido */
+    border-radius: 5px; /* Bordes redondeados */
+    font-family: Arial, sans-serif; /* Fuente */
+    text-transform: uppercase; /* Texto en mayúsculas */
+    z-index: 10; /* Asegura que quede por encima */
+}
+
+/* Configuración de imágenes dentro de los contenedores */
+.horizontal-slider-container .image-wrapper img {
+    display: block; /* Asegura que la imagen sea un bloque */
+}
+
+/* Estilos del footer */
+.footer {
+    text-align: center; /* Centra todo el contenido del footer */
+    padding: 0; /* Elimina cualquier relleno extra del footer */
+    font-size: 0.7em; /* Tamaño del texto del copyright */
+    color: white; /* Color del texto */
+    background-color: #21233D; /* Fondo oscuro coherente con el diseño */
+    border-top: 1px solid #555; /* Línea sutil para separar el footer */
+    font-family: Arial, sans-serif; /* Fuente consistente con la web */
+}
+
+/* Contenedor del logo */
+.logo-container {
+    margin: 5; /* Elimina márgenes extra alrededor del contenedor */
+    padding: 0; /* Elimina relleno del contenedor */
+    display: flex; /* Permite control total del alineado */
+    justify-content: center; /* Centra el logo horizontalmente */
+}
+
+.logo-container img {
+    max-width: 150px; /* Ajusta el ancho máximo del logo */
+    height: auto; /* Mantiene la proporción del logo */
+    margin-bottom: 0; /* Elimina cualquier separación inferior */
+}
+
+/* Texto del copyright */
+.footer-text {
+    margin: 0; /* Elimina márgenes extra alrededor del texto */
+    padding: 0; /* Asegura que no haya espacio adicional */
+}
+
+/* Sección de contacto */
+.contact-section {
+    text-align: center; /* Centra el texto y los iconos */
+    margin-bottom: 15px; /* Añade un espacio entre la sección y el footer */
+    font-family: Orbitron, sans-serif; /* Fuente consistente con el diseño */
+}
+
+.contact-section h2 {
+    font-size: 0.7em; /* Tamaño del texto del título */
+    color: white; /* Color del texto */
+    margin-bottom: 10px; /* Espaciado inferior del título */
+}
+
+.contact-icons {
+    display: flex; /* Muestra los iconos en fila */
+    justify-content: center; /* Centra los iconos horizontalmente */
+    gap: 20px; /* Añade espacio entre los iconos */
+}
+
+.contact-icons img {
+    width: 40px; /* Ancho de los iconos */
+    height: auto; /* Mantiene la proporción */
+    transition: transform 0.3s ease, filter 0.3s ease; /* Efectos suaves */
+}
+
+.contact-icons img:hover {
+    transform: scale(1.1); /* Aumenta ligeramente el tamaño en escritorio */
+}
+
+.contact-icons img:active {
+    transform: scale(1.1); /* Mismo efecto al tocar en móviles */
+    filter: brightness(0.8); /* Oscurece el icono ligeramente al tocar */
