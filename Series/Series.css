@@ -14,7 +14,7 @@
     height: auto; /* Mantiene las proporciones de la imagen */
     display: block; /* Asegura que sea un elemento de bloque */
     margin: 0 auto; /* Centra horizontalmente */
-    border-radius: 15px; /* Bordes redondeados de la imagen */
+    border-radius: 7px; /* Bordes redondeados de la imagen */
 }
 
 .menu-slider {
