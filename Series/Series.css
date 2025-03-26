@@ -1,201 +1,233 @@
-       body {
-    font-family: PT Sans, sans-serif; /* Fuente principal de la web */
-    margin: 0; /* Elimina los márgenes del navegador */
-    padding: 0; /* Elimina el relleno */
-    display: flex; /* Activa el modelo flexbox */
-    flex-direction: column; /* Coloca los elementos en columna */
-    align-items: center; /* Centra los elementos horizontalmente */
-    background-color: #21233D; /* Color de fondo de la página */
+body {
+    font-family: Orbitron, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #21233D;
+}
+
+.top-image {
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+.top-image::after {
+    content: ""; /* Elemento pseudo para el degradado */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, #21233D 100%);
+    pointer-events: none;
+    z-index: 1;
 }
 
 .top-image img {
-    width: 95%; /* Imagen ocupa el 95% del contenedor */
-    max-width: 700px; /* Ancho máximo de la imagen */
-    height: auto; /* Mantiene las proporciones de la imagen */
-    display: block; /* Asegura que sea un elemento de bloque */
-    margin: 0 auto; /* Centra horizontalmente */
-    border-radius: 7px; /* Bordes redondeados de la imagen */
+    display: block;
+    width: 105vw;
+    height: auto;
+    margin: 0 auto;
+    position: relative;
+    z-index: 0;
 }
 
 .menu-slider {
-    display: flex; /* Configura el contenedor para distribuir botones en fila */
-    overflow-x: auto; /* Activa el desplazamiento horizontal */
-    gap: 10px; /* Espacio entre los botones */
-    padding: 10px 0; /* Añade espacio superior e inferior */
-    width: 90%; /* Limita el ancho del contenedor */
-    scrollbar-width: thin; /* Personaliza el ancho del scroll en navegadores compatibles */
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 10px;
+    padding: 10px 0;
+    width: 90%;
+    scrollbar-width: thin;
 }
 
 .menu-slider::-webkit-scrollbar {
-    height: 6px; /* Altura de la barra de desplazamiento */
+    height: 6px;
 }
 
 .menu-slider::-webkit-scrollbar-thumb {
-    background-color: #888; /* Color de la barra de desplazamiento */
-    border-radius: 10px; /* Bordes redondeados */
+    background-color: #888;
+    border-radius: 10px;
 }
 
 .menu-slider::-webkit-scrollbar-thumb:hover {
-    background-color: #555; /* Color al pasar el cursor */
+    background-color: #555;
 }
 
 .menu {
-    position: relative; /* Contenedor de referencia para los dropdowns */
-    flex-shrink: 0; /* Evita que los botones se reduzcan de tamaño */
+    position: relative;
+    flex-shrink: 0;
 }
 
 .menu > button {
-    background-color: white; /* Color de fondo del botón */
-    color: black; /* Color del texto */
-    padding: 10px 7px; /* Espaciado interno del botón */
-    border: 2px solid black; /* Borde negro alrededor del botón */
-    border-radius: 5px; /* Bordes redondeados */
-    cursor: pointer; /* Cambia el cursor al pasar por el botón */
-    font-size: 0.7em; /* Tamaño del texto del botón */
-    font-weight: 900; /* Grosor del texto */
-    font-family: Orbitron, sans-serif; /* Fuente del botón */
-    transition: all 0.3s ease; /* Animación suave para cambios */
-    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3); /* Sombra alrededor del botón */
+    background-color: white;
+    color: black;
+    padding: 10px 7px;
+    border: 2px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 900;
+    font-family: Orbitron, sans-serif;
+    transition: all 0.3s ease;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 .menu > button:active {
-    background-color: #f5f5f5; /* Cambia el color de fondo al hacer clic */
-    box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.3); /* Sombra interna al hacer clic */
-    transform: scale(0.98); /* Reduce ligeramente el tamaño del botón */
+    background-color: #f5f5f5;
+    box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.3);
+    transform: scale(0.98);
 }
 
 .dropdown {
-    display: none; /* Oculta los dropdowns inicialmente */
-    position: absolute; /* Posición independiente del flujo del documento */
-    background-color: black; /* Fondo negro para el menú desplegable */
-    border-radius: 5px; /* Bordes redondeados */
-    box-shadow: 2px 10px rgba(0, 0, 0, 0.2); /* Sombra para el dropdown */
-    z-index: 1000; /* Asegura que el dropdown esté encima de otros elementos */
+    display: none;
+    position: absolute;
+    background-color: black;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
 }
 
 .dropdown a {
-    display: block; /* Cada enlace ocupa toda una línea */
-    padding: 10px 9px; /* Espaciado interno de los enlaces */
-    color: white; /* Color del texto */
-    text-decoration: none; /* Elimina el subrayado del texto */
-    font-weight: 600; /* Grosor del texto */
-    font-family: Orbitron, sans-serif; /* Fuente de los enlaces */
-    font-size: 0.8em; /* Tamaño de la letra */
-    transition: background-color 0.2s ease; /* Animación suave para el color de fondo */
+    display: block;
+    padding: 10px 9px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-family: Orbitron, sans-serif;
+    font-size: 0.8em;
+    transition: background-color 0.2s ease;
 }
 
 .dropdown a:active {
-    background-color: #E0E0E0; /* Cambia el color de fondo al hacer clic */
+    background-color: #E0E0E0;
 }
 
 .content {
-    width: 90%; /* Ancho del contenedor de contenido */
-    text-align: left; /* Alineación del texto hacia la izquierda */
+    width: 90%;
+    text-align: left;
 }
 
 .content h1 {
-    font-size: 1em; /* Tamaño del texto del título */
-    margin-bottom: 10px; /* Espacio inferior del título */
-    color: white; /* Color del texto */
-    font-weight: 700; /* Grosor del título */
-    font-family: PT Sans, sans-serif; /* Fuente consistente */
+    font-size: 1em;
+    margin-bottom: 10px;
+    color: white;
+    font-weight: 700;
+    font-family: PT Sans, sans-serif;
 }
 
 .content p {
-    white-space: pre-wrap; /* Conserva los saltos de línea y espacios en el texto */
-    line-height: 1.6; /* Ajusta la separación entre renglones */
-    font-size: 0.8em; /* Tamaño de letra */
-    color: #ddd; /* Color del texto */
-    font-weight: 700; /* Grosor del párrafo */
-    text-align: left; /* Alinea el texto a la izquierda */
-    font-family: PT Sans, sans-serif; /* Fuente consistente */
+    white-space: pre-wrap;
+    line-height: 1.6;
+    font-size: 0.8em;
+    color: #ddd;
+    font-weight: 700;
+    text-align: left;
+    font-family: PT Sans, sans-serif;
 }
 
 .slider-indicator {
-    text-align: center; /* Centra el texto horizontalmente */
-    margin-top: 10px; /* Posiciona el texto más abajo del slider */
-    font-size: 0.9em; /* Tamaño del texto del indicador */
-    color: white; /* Color del texto */
-    font-family: Orbitron, sans-serif; /* Fuente del texto */
-    animation: bounce 1.5s infinite; /* Efecto de rebote */
+    text-align: center;
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: white;
+    font-family: Orbitron, sans-serif;
+    animation: bounce 1.5s infinite;
 }
 
 @keyframes bounce {
     0%, 100% {
-        transform: translateY(0); /* Sin desplazamiento vertical */
+        transform: translateY(0);
     }
     50% {
-        transform: translateY(-5px); /* Rebota 5px hacia arriba */
+        transform: translateY(-5px);
     }
 }
 
 @media (max-width: 600px) {
     .menu-slider {
-        gap: 5px; /* Reduce el espacio entre botones en pantallas pequeñas */
+        gap: 5px;
     }
 }
 
-/* Estilos del footer */
 .footer {
-    text-align: center; /* Centra todo el contenido del footer */
-    padding: 0; /* Elimina cualquier relleno extra del footer */
-    font-size: 0.7em; /* Tamaño del texto del copyright */
-    color: white; /* Color del texto */
-    background-color: #21233D; /* Fondo oscuro coherente con el diseño */
-    border-top: 1px solid #555; /* Línea sutil para separar el footer */
-    font-family: PT Sans, sans-serif; /* Fuente consistente con la web */
+    text-align: center;
+    padding: 0;
+    font-size: 0.7em;
+    color: white;
+    background-color: #21233D;
+    border-top: 1px solid #555;
+    font-family: Arial, sans-serif;
 }
 
-/* Contenedor del logo */
 .logo-container {
-    margin: 0; /* Elimina márgenes extra alrededor del contenedor */
-    padding: 0; /* Elimina relleno del contenedor */
-    display: flex; /* Permite control total del alineado */
-    justify-content: center; /* Centra el logo horizontalmente */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
 }
 
 .logo-container img {
-    max-width: 150px; /* Ajusta el ancho máximo del logo */
-    height: auto; /* Mantiene la proporción del logo */
-    margin-bottom: 0; /* Elimina cualquier separación inferior */
+    max-width: 150px;
+    height: auto;
+    margin-bottom: 0;
 }
 
-/* Texto del copyright */
 .footer-text {
-    margin: 0; /* Elimina márgenes extra alrededor del texto */
-    padding: 0; /* Asegura que no haya espacio adicional */
+    margin: 0;
+    padding: 0;
 }
 
-/* Sección de contacto */
 .contact-section {
-    text-align: center; /* Centra el texto y los iconos */
-    margin-bottom: 15px; /* Añade un espacio entre la sección y el footer */
-    font-family: Orbitron s, sans-serif; /* Fuente consistente con el diseño */
+    text-align: center;
+    margin-bottom: 15px;
+    font-family: PT Sans, sans-serif;
 }
 
 .contact-section h2 {
-    font-size: 0.7em; /* Tamaño del texto del título */
-    color: white; /* Color del texto */
-    margin-bottom: 10px; /* Espaciado inferior del título */
+    font-size: 0.7em;
+    color: white;
+    margin-bottom: 10px;
 }
 
 .contact-icons {
-    display: flex; /* Muestra los iconos en fila */
-    justify-content: center; /* Centra los iconos horizontalmente */
-    gap: 20px; /* Añade espacio entre los iconos */
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
 .contact-icons img {
-    width: 40px; /* Ancho de los iconos */
-    height: auto; /* Mantiene la proporción */
-    transition: transform 0.3s ease, filter 0.3s ease; /* Efectos suaves */
+    width: 40px;
+    height: auto;
+    transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .contact-icons img:hover {
-    transform: scale(1.1); /* Aumenta ligeramente el tamaño en escritorio */
+    transform: scale(1.1);
 }
 
 .contact-icons img:active {
-    transform: scale(1.1); /* Mismo efecto al tocar en móviles */
-    filter: brightness(0.8); /* Oscurece el icono ligeramente al tocar */
+    transform: scale(1.1);
+    filter: brightness(0.8);
+}
+
+.menu > button:focus {
+    outline: none;
+    border: 2px solid #005EFF;
+    box-shadow: 0 0 10px 2px rgba(0, 94, 255, 0.8);
+    background-color: #21233D;
+    color: white;
+}
+
+.dropdown a:focus {
+    outline: none;
+    background-color: #005EFF;
+    color: white;
+    border-radius: 5px;
 }
