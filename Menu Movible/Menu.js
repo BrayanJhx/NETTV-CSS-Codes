@@ -49,6 +49,7 @@
 
     // Crear los elementos del menú
     const menuItems = [
+        { text: 'Buscar Películas', href: 'go:Buscador' },
         { text: 'Buscar Contenido', href: 'http://action_search' },
         { text: 'Peliculas', href: 'go:Homeplay' },
         { text: 'Series', href: 'go:Series' },
