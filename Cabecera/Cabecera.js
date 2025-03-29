@@ -1,6 +1,7 @@
 (function () {
     const dayLogo = "https://i.ibb.co/S7Ps5hrb/NETTV-Logo-White.png";
     const nightLogo = "https://i.ibb.co/4Rp287S2/NETTVLogo.png";
+    const searchIconURL = "https://i.ibb.co/chTYKNNg/Busqueda-Contenido.png"; // URL del nuevo ícono
 
     // Crear la cabecera
     const header = document.createElement("div");
@@ -18,7 +19,7 @@
         padding: "0 10px",
         zIndex: "1000",
         boxSizing: "border-box",
-        transition: "transform 0.3s ease-in-out", // Transición suave para ocultar
+        transition: "transform 0.3s ease-in-out",
     });
 
     // Crear el elemento de hora
@@ -65,49 +66,75 @@
 
     logoContainer.appendChild(logoImage);
 
-    // Crear el input del buscador
-    const searchInput = document.createElement("input");
-    searchInput.id = "search-input";
-    searchInput.placeholder = "Buscar Contenido...";
-    Object.assign(searchInput.style, {
-        width: "50%",
-        height: "30px",
-        padding: "0 8px",
-        fontSize: "12px",
-        border: "1.5px solid #21233D",
-        borderRadius: "7px",
-        backgroundColor: "rgba(33, 35, 61, 0.9)", // Semi-transparente para el input
-        color: "white",
-        outline: "none",
-        textAlign: "center",
+    // Crear el ícono del buscador
+    const searchIcon = document.createElement("div");
+    searchIcon.id = "search-icon";
+    searchIcon.tabIndex = 0; // Habilitar el foco para controles TV y navegación con teclado
+    Object.assign(searchIcon.style, {
+        width: "180px",
+        height: "50px",
+        backgroundImage: `url('${searchIconURL}')`, // Ruta del nuevo ícono
+        backgroundSize: "contain",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
         cursor: "pointer",
+        outline: "none", // Quitar borde predeterminado
+        borderRadius: "5px", // Bordes redondeados
     });
 
-    searchInput.addEventListener("focus", () => {
-        window.location.href = "http://action_search"; // Llama al buscador integrado
+    // Redirigir a action_search al presionar Enter
+    searchIcon.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+            window.location.href = "action_search"; // Redirección a action_search
+        }
+    });
+
+    // Implementar doble toque para abrir el enlace en dispositivos táctiles
+    let touchTimeout = null;
+    searchIcon.addEventListener("click", () => {
+        if (touchTimeout === null) {
+            // Primer toque: configurar un tiempo de espera
+            touchTimeout = setTimeout(() => {
+                touchTimeout = null; // Reiniciar si no hay segundo toque
+            }, 300);
+        } else {
+            // Segundo toque: redirigir a action_search
+            clearTimeout(touchTimeout);
+            touchTimeout = null;
+            window.location.href = "http://action_search"; // Redirección a action_search
+        }
+    });
+
+    // Agregar efecto azul en el estado de enfoque (Focus)
+    searchIcon.addEventListener("focus", () => {
+        searchIcon.style.boxShadow = "0 0 5px 2px #005EFF"; // Efecto azul brillante alrededor
+    });
+
+    searchIcon.addEventListener("blur", () => {
+        searchIcon.style.boxShadow = "none"; // Eliminar el efecto al perder el foco
     });
 
     // Añadir los elementos a la cabecera
     header.appendChild(logoContainer);
-    header.appendChild(searchInput);
+    header.appendChild(searchIcon); // Ícono del buscador
     header.appendChild(timeElement);
 
     // Insertar la cabecera en el body
     document.body.insertAdjacentElement("afterbegin", header);
 
     // Ajustar el margen superior del body
-    document.body.style.marginTop = "0"; // Asegurarnos de eliminar el espacio oscuro
+    document.body.style.marginTop = "0";
 
-    // --- Detectar desplazamiento ---
+    // Detectar desplazamiento
     let lastScrollY = window.scrollY;
 
     window.addEventListener("scroll", () => {
         if (window.scrollY > lastScrollY) {
             // Desplazamiento hacia abajo: ocultar cabecera
-            header.style.transform = "translateY(-100%)"; // Mover hacia arriba
+            header.style.transform = "translateY(-100%)";
         } else {
             // Desplazamiento hacia arriba: mostrar cabecera
-            header.style.transform = "translateY(0)"; // Restaurar posición
+            header.style.transform = "translateY(0)";
         }
         lastScrollY = window.scrollY;
     });
