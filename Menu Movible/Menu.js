@@ -55,6 +55,7 @@
         { text: 'Música 24/7', href: 'go:Music247' },
         { text: 'TV En Vivo', href: 'go:PlutoTV' },
         { text: 'PlayZone', href: 'go:PlayGames' },
+        { text: 'Favoritos', href: 'go:Favoritos' },
         { text: 'Recarga tu cuenta', href: 'go:PayPal' },
         { text: 'Actualizar App', href: 'go:Actualizar' },
         { text: 'Novedades', href: 'go:Novedades' },
@@ -153,4 +154,4 @@
             document.removeEventListener('touchmove', moveBall);
         }, { once: true });
     });
-})();
+})(); 
