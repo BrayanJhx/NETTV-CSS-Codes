@@ -10,29 +10,29 @@ let pauseTimeout;
 let isScrolling = false;
 
 const titles = [
+    "Estado Eléctrico",
+    "Hereje",
+    "Henry Danger: La Película",
     "Capitan América: Brave New World",
     "Contraataque",
     "Daredevil: Born Again",
     "Erase Una Vez El Oeste",
     "El Pingüino",
     "Culpa Mia: Londres",
-    "Compañera Perfecta",
-    "Paradise",
-    "LOTR: La Guerra De Los Rohirrim",
-    "Criaturas: Linea De Extinción"
+    "Compañera Perfecta"
 ];
 
 const descriptions = [
+    "En un futuro distópico, Michelle busca a su hermano menor mientras atraviesa una América devastada, acompañada de un robot.",
+    "Explora la fe y la psicología en un oscuro thriller dirigido por Scott Beck y Bryan Woods. Hugh Grant brilla en un siniestro papel.",
+    "Henry Hart, como Kid Danger, debe detener a un villano que amenaza con alterar la realidad. Enfrentará desafíos mientras salva su mundo.",
     "Tras reunirse con el recién elegido presidente de Estados Unidos Thaddeus Ross, Sam se verá envuelto en un incidente internacional.",
     "Tras rescatar a dos rehenes y hacerse de un nuevo enemigo, el capitán Guerrero y su escuadrón, se enfrentan a la emboscada de un grupo criminal.",
     "Un abogado ciego con habilidades especiales, lucha por la justicia, mientras que Wilson Fisk persigue sus propios objetivos políticos en NY.",
     "Miniserie Abientada en el Viejo Oeste. Sigue a una madre y su hijo mientras luchan por sobrevivir en un mundo hostil.",
     "Miniserie de DC que sigue el ascenso de Oswald Cobblepot en el inframundo criminal de Gotham tras los eventos de The Batman.",
     "Noah, quien se muda a Londres con su madre, conoce a Nick, su nuevo hermanastro. Entre ellos surge una intensa y peligrosa atracción.",
-    "Un thriller de ciencia ficción donde Iris, un robot acompañante, lucha por su libertad mientras descubre la verdad sobre su existencia.",
-    "Es un thriller ambientado en un búnker tras un evento apocalíptico, donde un agente del Servicio Secreto investiga el asesinato del presidente.",
-    "Película animada que explora la épica defensa de Helm contra los invasores dunlendinos, siglos antes de los eventos de *El Señor de los Anillos*.",
-    "Sigue a un padre y dos mujeres que enfrentan monstruosas criaturas para salvar la vida de un niño en un mundo postapocalíptico."
+    "Un thriller de ciencia ficción donde Iris, un robot acompañante, lucha por su libertad mientras descubre la verdad sobre su existencia."
 ];
 
 // Función para mover el carrusel
