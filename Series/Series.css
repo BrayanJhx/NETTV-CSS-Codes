@@ -156,67 +156,6 @@ body {
     }
 }
 
-.footer {
-    text-align: center;
-    padding: 0;
-    font-size: 0.7em;
-    color: white;
-    background-color: #21233D;
-    border-top: 1px solid #555;
-    font-family: Arial, sans-serif;
-}
-
-.logo-container {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-}
-
-.logo-container img {
-    max-width: 150px;
-    height: auto;
-    margin-bottom: 0;
-}
-
-.footer-text {
-    margin: 0;
-    padding: 0;
-}
-
-.contact-section {
-    text-align: center;
-    margin-bottom: 15px;
-    font-family: PT Sans, sans-serif;
-}
-
-.contact-section h2 {
-    font-size: 0.7em;
-    color: white;
-    margin-bottom: 10px;
-}
-
-.contact-icons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-.contact-icons img {
-    width: 40px;
-    height: auto;
-    transition: transform 0.3s ease, filter 0.3s ease;
-}
-
-.contact-icons img:hover {
-    transform: scale(1.1);
-}
-
-.contact-icons img:active {
-    transform: scale(1.1);
-    filter: brightness(0.8);
-}
-
 .menu > button:focus {
     outline: none;
     border: 2px solid #005EFF;
