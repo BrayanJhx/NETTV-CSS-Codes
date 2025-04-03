@@ -81,6 +81,46 @@
     menu.appendChild(ul);
     document.body.appendChild(ball);
     document.body.appendChild(menu);
+    
+   // Panel de control del focus
+   document.addEventListener("DOMContentLoaded", () => {
+    // Seleccionar múltiples clases que deben tener soporte para focus
+    const focusElements = document.querySelectorAll(
+        ".floating-ball, .chat-menu ul li a"
+    );
+
+    focusElements.forEach(element => {
+        element.tabIndex = 0; // Permitir que sean enfocables con teclado
+
+        // Guardar el borde original del elemento
+        const originalBorder = getComputedStyle(element).border;
+
+        // Agregar efecto visual al enfocar
+        element.addEventListener("focus", () => {
+            element.style.boxShadow = "0 0 3px 4px #1e90ff"; // Reduce el desenfoque (3px) y aumenta el tamaño sólido (4px)
+            element.style.transform = "scale(1.05)";
+
+            // Si el elemento tiene un borde definido, respétalo
+            if (originalBorder !== "none" && originalBorder.trim() !== "0px") {
+                element.style.border = originalBorder;
+            } else {
+                // Agregar borde temporal si no hay borde original
+                element.style.border = "2px solid #1e90ff";
+            }
+        });
+
+        // Remover efecto visual al perder el foco
+        element.addEventListener("blur", () => {
+            element.style.boxShadow = "none";
+            element.style.transform = "scale(1)";
+
+            // Restaurar el borde original o quitarlo si no existía
+            element.style.border = originalBorder !== "none" && originalBorder.trim() !== "0px"
+                ? originalBorder
+                : "none";
+        });
+    });
+});
 
     // Mostrar/ocultar el menú al hacer clic en la bolita
     ball.addEventListener('click', (event) => {
