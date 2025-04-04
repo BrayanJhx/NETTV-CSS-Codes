@@ -1,25 +1,52 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const initializeFocusEvents = () => {
-        const images = document.querySelectorAll(".contenedor-imagen img");
+    // Función para inicializar el efecto de focus
+    const initializeFocusEffect = () => {
+        // Seleccionar imágenes y favoritos
+        const focusableElements = document.querySelectorAll(
+            ".contenedor-imagen img, .favoritos"
+        );
 
-        images.forEach(img => {
-            img.tabIndex = 0; // Habilitar tabulación para el enfoque
+        // Iterar sobre los elementos y añadir los eventos
+        focusableElements.forEach(element => {
+            element.tabIndex = 0; // Hacer enfocables con teclado
 
-            img.addEventListener("focus", () => {
-                img.style.boxShadow = "0 0 10px 3px #1e90ff, 0 0 20px #00FFFF, 0 0 30px #00FFFF";
-                img.style.border = "2px solid #1e90ff";
-                img.style.transform = "scale(1.05)";
-                img.style.animation = "none"; // Suspender animación de neón
+            // Agregar efecto de focus
+            element.addEventListener("focus", () => {
+                element.style.boxShadow = "0 0 10px 3px #1e90ff";
+                element.style.border = "2px solid #1e90ff";
+                element.style.transform = "scale(1.05)";
+
+                // En caso de imágenes en carruseles horizontales
+                const contenedorHorizontal = element.closest(".contenedor-horiz");
+                if (contenedorHorizontal) {
+                    element.scrollIntoView({
+                        behavior: "smooth",
+                        block: "nearest",
+                        inline: "center"
+                    });
+                }
             });
 
-            img.addEventListener("blur", () => {
-                img.style.boxShadow = "none";
-                img.style.border = "3px solid black"; // Restaurar borde negro
-                img.style.transform = "scale(1)";
-                img.style.animation = "neon-border 1.5s infinite"; // Reactivar efecto neón
+            // Remover efecto al perder foco
+            element.addEventListener("blur", () => {
+                element.style.boxShadow = "none";
+                element.style.border = "none";
+                element.style.transform = "scale(1)";
             });
         });
     };
 
-    initializeFocusEvents();
+    // Observador de cambios en el DOM para manejar contenido dinámico
+    const observer = new MutationObserver(() => {
+        initializeFocusEffect(); // Reaplicar los efectos en nuevos elementos
+    });
+
+    // Iniciar el observador en el contenedor principal
+    const mainContainer = document.querySelector("body");
+    if (mainContainer) {
+        observer.observe(mainContainer, { childList: true, subtree: true });
+    }
+
+    // Inicialización principal para elementos estáticos
+    initializeFocusEffect();
 });
