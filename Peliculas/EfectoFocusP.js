@@ -1,18 +1,25 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // Función para inicializar el efecto de focus
     const initializeFocusEffect = () => {
-        const images = document.querySelectorAll(".contenedor-imagen img");
+        // Seleccionar imágenes y favoritos
+        const focusableElements = document.querySelectorAll(
+            ".contenedor-imagen img, .favoritos, .slide img, .image-wrapper"
+        );
 
-        images.forEach(img => {
-            img.tabIndex = 0;
+        // Iterar sobre los elementos y añadir los eventos
+        focusableElements.forEach(element => {
+            element.tabIndex = 0; // Hacer enfocables con teclado
 
-            img.addEventListener("focus", () => {
-                img.style.boxShadow = "0 0 10px 3px #1e90ff";
-                img.style.border = "2px solid #1e90ff";
-                img.style.transform = "scale(1.05)";
+            // Agregar efecto de focus
+            element.addEventListener("focus", () => {
+                element.style.boxShadow = "0 0 10px 3px #1e90ff";
+                element.style.border = "2px solid #1e90ff";
+                element.style.transform = "scale(1.05)";
 
-                const contenedorHorizontal = img.closest(".contenedor-horiz");
+                // En caso de imágenes en carruseles horizontales
+                const contenedorHorizontal = element.closest(".contenedor-horiz");
                 if (contenedorHorizontal) {
-                    img.scrollIntoView({
+                    element.scrollIntoView({
                         behavior: "smooth",
                         block: "nearest",
                         inline: "center"
@@ -20,23 +27,26 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
 
-            img.addEventListener("blur", () => {
-                img.style.boxShadow = "none";
-                img.style.border = "none";
-                img.style.transform = "scale(1)";
+            // Remover efecto al perder foco
+            element.addEventListener("blur", () => {
+                element.style.boxShadow = "none";
+                element.style.border = "none";
+                element.style.transform = "scale(1)";
             });
         });
     };
 
+    // Observador de cambios en el DOM para manejar contenido dinámico
     const observer = new MutationObserver(() => {
-        initializeFocusEffect();
+        initializeFocusEffect(); // Reaplicar los efectos en nuevos elementos
     });
 
+    // Iniciar el observador en el contenedor principal
     const mainContainer = document.querySelector("body");
     if (mainContainer) {
         observer.observe(mainContainer, { childList: true, subtree: true });
     }
 
-    // Inicialización principal
+    // Inicialización principal para elementos estáticos
     initializeFocusEffect();
 });
