@@ -5,6 +5,8 @@ body {
     gap: 10px;
     margin: 0;
     padding: 10px;
+    justify-content: center;
+    align-content: center;
 }
 
 @media (min-width: 768px) {
@@ -15,59 +17,55 @@ body {
 
 @media (min-width: 1200px) {
     body {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-template-columns: repeat(7, 1fr);
     }
 }
 
-        .contenedor-imagen {
-            position: relative;
-            border: 3px solid black;
-            width: 100%;
-            height: auto;
-            transition: all 0.3s ease;
-            overflow: visible;
-        }
-        
-        .contenedor-imagen img {
+@media (min-width: 2560px) {
+    body {
+        grid-template-columns: repeat(9, 1fr); /* 10 columnas en pantallas 4K ultrawide */
+    }
+}
+
+.contenedor-imagen {
+    position: relative;
+    border: 3px solid black;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor-imagen img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
-        
-        .contenedor-imagen img:focus {
-    outline: none;
-    box-shadow: 0 0 10px 3px #1e90ff, 0 0 20px #00FFFF, 0 0 30px #00FFFF;
-    border: 2px solid #1e90ff;
-    transform: scale(1.05);
-    animation: none;
+    box-sizing: border-box;
 }
 
-.contenedor-imagen img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-        img {
-            width: 100%;
-            height: auto;
-        }
-
-        .favoritos {
-            position: absolute;
-            bottom: 12px;
+.favoritos {
+    position: absolute;
+    bottom: 12px;
     left: 50%;
     transform: translateX(-50%);
-            font-size: 20px;
-            color: white;
-            cursor: pointer;
-            transition: color 0.3s ease;
-            z-index: 10;
-            
-        }
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    z-index: 10;
+}
 
-        .favoritos.marcar {
-            color: red;
-        }
+.favoritos i {
+    text-shadow: 0 0 5px black, 0 0 10px black;
+}
+
+.favoritos.marcar {
+    color: red;
+}
 
         img:active {
             animation: neon-border 1.5s infinite;
@@ -100,7 +98,7 @@ body {
             text-decoration: none;
         }
 
-        #mensaje {
+#mensaje {
             position: fixed;
             top: 10px;
             left: 50%;
