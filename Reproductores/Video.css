@@ -5,21 +5,12 @@ body {
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background-color: #121212;
+            background-color: #21233D;
             font-family: Arial, sans-serif;
             color: white;
         }
 
-        #videoContainer {
-            position: relative;
-            width: 100%;
-            max-width: 100%;
-            background-color: #21233D;
-            border-radius: 0;
-            overflow: hidden;
-            margin: 0;
-            padding: 0;
-        }
+        
 
         #videoContainer:fullscreen {
             display: flex;
@@ -27,67 +18,39 @@ body {
             align-items: center;
         }
 
-        video {
-            width: 100%;
-            height: auto%;
-            object-fit: contain;
-            display: block;
-            margin: 0;
-            padding: 0;
-            max-height: 100vh;
-        }
-
-        #playButton {
-            position: absolute;
-            transition: opacity 0.5s ease;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 50px;
-            height: 50px;
-            background-color: white;
-            border-radius: 40%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            z-index: 10;
-            border: 5px solid transparent;
-        }
-
-        #playButton.loading::before {
-            content: '';
-            position: absolute;
-            top: -12px;
-            left: -12px;
-            width: 60px;
-            height: 60px;
-            border: 7px solid transparent;
-            border-top: 7px solid #005EFF;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        
-        #playButton i {
-    font-size: 3.1rem;
-    color: black;
+#videoContainer {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    overflow: hidden;
+    z-index: 10;
 }
 
-        @keyframes spin {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    margin: 0;
+    padding: 0;
+}
 
-        #playButton.hidden {
-            visibility: hidden;
-            opacity: 0;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-        }
-        
+@media (orientation: portrait) {
+    #videoContainer {
+        height: 30vh;
+    }
+}
+
+@media (orientation: landscape) {
+    #videoContainer {
+        height: 60vh;
+    }
+}
+
         #playPause {
     width: 40px;
     height: 40px;
@@ -95,7 +58,7 @@ body {
     justify-content: center;
     align-items: center;
     font-size: 1.5rem;
-    color: white;
+    color: red;
 }
 
 #mute, #lock {
@@ -121,21 +84,24 @@ body {
             background: none;
             z-index: 5;
         }
-        
-        #controls.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
+
+       #controls.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+#playPause.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
 
         .control {
             font-size: 1.5rem;
             color: white;
             cursor: pointer;
             transition: transform 0.2s ease;
-        }
-
-        .control:hover {
-            transform: scale(1.1);
         }
 
         .slider {
@@ -255,4 +221,185 @@ body {
     color: red;
     background-color: black;
     border-color: red;
+}
+
+#threeDotsLoader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    z-index: 15;
+}
+
+#threeDotsLoader.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.dot {
+    width: 15px;
+    height: 15px;
+    background-color: red;
+    border-radius: 50%;
+    animation: bounce 1.2s infinite ease-in-out;
+}
+
+.dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+    0%, 80%, 100% {
+        transform: scale(0);
+    }
+    40% {
+        transform: scale(1);
+    }
+}
+
+.menu-botones {
+    position: absolute;
+    margin-top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    gap: 2px;
+    padding: 2px 2px;
+    width: 80%;
+    z-index: 9;
+}
+
+@media (orientation: landscape) {
+    .menu-botones {
+        margin-top: 35%;
+        width: 70%;
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    }
+}
+
+.menu-botones button {
+    background-color: white;
+    color: black;
+    padding: 0;
+    border: 2px solid black;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.7em;
+    font-weight: 900;
+    font-family: Orbitron, sans-serif;
+    transition: all 0.3s ease;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 100%;
+    line-height: 1;
+    box-sizing: border-box;
+}
+
+
+@media (max-width: 600px) {
+    .menu-botones {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 720px) and (orientation: landscape) {
+    .menu-botones {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media (min-width: 1200px) {
+    .menu-botones {
+        grid-template-columns: repeat(7, 1fr);
+    }
+}
+
+.menu {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.menu > button {
+    background-color: white;
+    color: black;
+    padding: 5px 1px;
+    border: 2px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 900;
+    font-family: Orbitron, sans-serif;
+    transition: all 0.3s ease;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.menu > button:active {
+    background-color: #f5f5f5;
+    box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.3);
+    transform: scale(0.98);
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    background-color: black;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    transform-origin: center top;
+}
+
+.dropdown a {
+    width: 148px;
+    height: auto;
+    display: block;
+    padding: 10px 9px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-family: Orbitron, sans-serif;
+    font-size: 0.99em;
+    transition: background-color 0.2s ease;
+}
+
+.dropdown a:active {
+    background-color: #E0E0E0;
+}
+
+.menu > button:focus {
+    outline: none;
+    border: 2px solid #005EFF;
+    box-shadow: 0 0 10px 2px rgba(0, 94, 255, 0.8);
+    background-color: #21233D;
+    color: white;
+}
+
+.dropdown a:focus {
+    outline: none;
+    background-color: #005EFF;
+    color: white;
+    border-radius: 5px;
+}
+
+.contact-section {
+    text-align: center;
+    padding: 15px 0;
+    background-color: #21233D;
+    margin-top: 60%;
+}
+
+@media (orientation: landscape) {
+    .contact-section {
+        margin-top: 45%;
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    }
 }
