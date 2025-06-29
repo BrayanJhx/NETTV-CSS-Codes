@@ -49,7 +49,6 @@
 
     // Crear los elementos del menú
     const menuItems = [
-        { text: 'Buscar Películas', href: 'go:Buscador' },
         { text: 'Buscar Contenido', href: 'http://action_search' },
         { text: 'Peliculas', href: 'go:Homeplay' },
         { text: 'Series', href: 'go:Series' },
@@ -57,7 +56,6 @@
         { text: 'TV En Vivo', href: 'go:PlutoTV' },
         { text: 'PlayZone', href: 'go:PlayGames' },
         { text: 'Favoritos', href: 'go:Favoritos' },
-        { text: 'Recarga tu cuenta', href: 'go:PayPal' },
         { text: 'Actualizar App', href: 'go:Actualizar' },
         { text: 'Novedades', href: 'go:Novedades' },
         { text: 'Reportar Fallas', href: 'go:Reportar' },
